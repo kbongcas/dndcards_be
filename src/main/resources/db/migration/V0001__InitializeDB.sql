@@ -22,3 +22,11 @@ CREATE TABLE spells(
     );
 
 INSERT INTO spells(SELECT * FROM CSVREAD('data/spells/spells.csv'));
+
+CREATE TABLE languages(
+    lang_id         INT PRIMARY KEY,
+    lang_name       VARCHAR,
+    lang_type       VARCHAR
+);
+
+INSERT INTO languages(SELECT * FROM CSVREAD('data/languages/languages.csv')) ;
