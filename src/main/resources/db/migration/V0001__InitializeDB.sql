@@ -1,6 +1,6 @@
 ---create spells table
 CREATE TABLE spells(
-    alph_num_name   VARCHAR PRIMARY KEY,
+    spell_id        INTEGER PRIMARY KEY,
     spell_name      VARCHAR,
     ritual          BIT,
     name_ritual     VARCHAR,
@@ -17,9 +17,6 @@ CREATE TABLE spells(
     higher_desc     CLOB,
     save            VARCHAR,
     class           VARCHAR,
-    book            VARCHAR,
-    page            VARCHAR,
-    book_page       VARCHAR
     );
 
 CREATE TABLE languages(
@@ -33,6 +30,22 @@ CREATE TABLE equipment_category(
     equipment_name  VARCHAR
 );
 
+CREATE TABLE weapons(
+    weapon_id       INT PRIMARY KEY,
+    eq_cat          VARCHAR,
+    weapon_name     VARCHAR,
+    weapon_cate     VARCHAR,
+    weapon_range    VARCHAR,
+    category_range  VARCHAR,
+    dam_dice_amnt   INT,
+    damage_value    INT,
+    damage_type     VARCHAR,
+    range           INT,
+    thrown_range_n  INT,
+    thrown_range_l  INT
+);
+
 INSERT INTO spells(SELECT * FROM CSVREAD('data/spells/spells.csv'));
 INSERT INTO languages(SELECT * FROM CSVREAD('data/languages/languages.csv')) ;
 INSERT INTO equipment_category(SELECT * FROM CSVREAD('data/equipment/equipment_cate.csv'));
+INSERT INTO weapons(SELECT * FROM CSVREAD('data/equipment/weapons.csv'));
