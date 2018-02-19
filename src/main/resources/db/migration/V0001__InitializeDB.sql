@@ -1,3 +1,20 @@
+CREATE TABLE users(
+    user_id         BIGSERIAL PRIMARY KEY,
+    user_name       VARCHAR,
+);
+
+CREATE TABLE characters(
+    char_id         BIGSERIAL PRIMARY KEY,
+    char_name       VARCHAR
+);
+
+CREATE TABLE has_characters(
+    user_id         BIGINT,
+    char_id         BIGINT,
+    FOREIGN KEY(user_id) REFERENCES users(user_id),
+    FOREIGN KEY(char_id) REFERENCES characters(char_id)
+);
+
 ---create spells table
 CREATE TABLE spells(
     spell_id        INTEGER PRIMARY KEY,
@@ -18,6 +35,13 @@ CREATE TABLE spells(
     save            VARCHAR,
     class           VARCHAR,
     );
+
+CREATE TABLE has_spell(
+    char_id         BIGINT,
+    spell_id        BIGINT,
+    FOREIGN KEY(char_id) REFERENCES characters(char_id),
+    FOREIGN KEY(spell_id) REFERENCES spells(spell_id)
+);
 
 CREATE TABLE languages(
     lang_id         INT PRIMARY KEY,
@@ -49,3 +73,32 @@ INSERT INTO spells(SELECT * FROM CSVREAD('data/spells/spells.csv'));
 INSERT INTO languages(SELECT * FROM CSVREAD('data/languages/languages.csv')) ;
 INSERT INTO equipment_category(SELECT * FROM CSVREAD('data/equipment/equipment_cate.csv'));
 INSERT INTO weapons(SELECT * FROM CSVREAD('data/equipment/weapons.csv'));
+
+--this is test data
+INSERT INTO users( user_name) VALUES ('Kevin');
+INSERT INTO users( user_name) VALUES ('Erkan');
+INSERT INTO users( user_name) VALUES ('Anthony');
+INSERT INTO users( user_name) VALUES ('Tommy');
+INSERT INTO users( user_name) VALUES ('Jack');
+INSERT INTO users( user_name) VALUES ('Steven');
+INSERT INTO users( user_name) VALUES ('Eric');
+INSERT INTO characters( char_name ) VALUES ('Mintos');
+INSERT INTO characters( char_name ) VALUES ('Solden');
+INSERT INTO characters( char_name ) VALUES ('Khronos');
+INSERT INTO characters( char_name ) VALUES ('Creed');
+INSERT INTO characters( char_name ) VALUES ('Kneecap');
+INSERT INTO characters( char_name ) VALUES ('Leoz');
+INSERT INTO characters( char_name ) VALUES ('Ethanol');
+INSERT INTO has_characters( user_id, char_id) VALUES ( 1, 1);
+INSERT INTO has_characters( user_id, char_id) VALUES ( 2, 2);
+INSERT INTO has_characters( user_id, char_id) VALUES ( 3, 3);
+INSERT INTO has_characters( user_id, char_id) VALUES ( 4, 4);
+INSERT INTO has_characters( user_id, char_id) VALUES ( 5, 5);
+INSERT INTO has_characters( user_id, char_id) VALUES ( 6, 6);
+INSERT INTO has_characters( user_id, char_id) VALUES ( 7, 7);
+INSERT INTO has_spell( char_id, spell_id) VALUES (1, 238);
+INSERT INTO has_spell( char_id, spell_id) VALUES (2, 205);
+INSERT INTO has_spell( char_id, spell_id) VALUES (3, 348);
+INSERT INTO has_spell( char_id, spell_id) VALUES (4, 197);
+INSERT INTO has_spell( char_id, spell_id) VALUES (6, 220);
+INSERT INTO has_spell( char_id, spell_id) VALUES (7, 155);
