@@ -1,5 +1,6 @@
-package com.kb.dndchar.domains;
+package com.kb.dndchar.controllers;
 
+import com.kb.dndchar.domains.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -7,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/user")
-public class User {
+public class UserController {
 
     @RequestMapping(method = RequestMethod.GET)
     List<User> getAllUsers() {
