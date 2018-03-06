@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name="characters")
-public class PlayerCharacter {
+public class DomainCharacter {
 
     @Id
     @Column(name = "char_id")

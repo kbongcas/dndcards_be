@@ -2,6 +2,7 @@ package com.kb.dndchar;
 
 import com.kb.dndchar.accessors.IPlayerCharacterAccessor;
 import com.kb.dndchar.accessors.IUserAccessor;
+import com.kb.dndchar.domains.DomainUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -25,6 +26,7 @@ public class Application {
             public void run(String... strings) throws Exception {
                 LOGGER.info("All the Users: {}", playerCharacterAccessor.findAll());
                 LOGGER.info("All the Characters: {}", userAccessor.findAll());
+                DomainUser test = new DomainUser();
             }
         };
     }

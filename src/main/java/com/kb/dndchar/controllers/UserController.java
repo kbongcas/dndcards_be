@@ -1,6 +1,6 @@
 package com.kb.dndchar.controllers;
 
-import com.kb.dndchar.domains.User;
+import com.kb.dndchar.domains.DomainUser;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -11,27 +11,27 @@ import java.util.List;
 public class UserController {
 
     @RequestMapping(method = RequestMethod.GET)
-    List<User> getAllUsers() {
+    List<DomainUser> getAllUsers() {
         return Collections.emptyList();
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    User createUser(@RequestBody User user) {
+    DomainUser createUser(@RequestBody DomainUser domainUser) {
         return null;
     }
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
-    User getUser(@PathVariable Long userId) {
+    DomainUser getUser(@PathVariable Long userId) {
         return null;
     }
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.PUT)
-    User updateUser(@PathVariable Long userId, @RequestBody User user) {
+    DomainUser updateUser(@PathVariable Long userId, @RequestBody DomainUser domainUser) {
         return null;
     }
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.DELETE)
-    User deleteUser(@PathVariable Long userId) {
+    DomainUser deleteUser(@PathVariable Long userId) {
         return null;
     }
 }

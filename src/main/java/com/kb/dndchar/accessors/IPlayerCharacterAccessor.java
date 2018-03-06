@@ -1,8 +1,8 @@
 package com.kb.dndchar.accessors;
 
-import com.kb.dndchar.domains.PlayerCharacter;
+import com.kb.dndchar.domains.DomainCharacter;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface IPlayerCharacterAccessor extends JpaRepository<PlayerCharacter, Long> {
+public interface IPlayerCharacterAccessor extends JpaRepository<DomainCharacter, Long> {
 
 }
