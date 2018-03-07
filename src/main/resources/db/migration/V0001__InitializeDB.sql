@@ -5,14 +5,16 @@ CREATE TABLE users(
 
 CREATE TABLE characters(
     char_id         BIGSERIAL PRIMARY KEY,
-    char_name       VARCHAR
+    char_name       VARCHAR,
+    created_on      datetime not null default NOW(),
+    last_updated    datetime
 );
 
 CREATE TABLE has_characters(
     user_id         BIGINT,
     char_id         BIGINT,
-    FOREIGN KEY(user_id) REFERENCES users(user_id),
-    FOREIGN KEY(char_id) REFERENCES characters(char_id)
+    FOREIGN KEY(user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY(char_id) REFERENCES characters(char_id) ON DELETE CASCADE
 );
 
 ---create spells table
@@ -39,8 +41,8 @@ CREATE TABLE spells(
 CREATE TABLE has_spell(
     char_id         BIGINT,
     spell_id        BIGINT,
-    FOREIGN KEY(char_id) REFERENCES characters(char_id),
-    FOREIGN KEY(spell_id) REFERENCES spells(spell_id)
+    FOREIGN KEY(char_id) REFERENCES characters(char_id) ON DELETE CASCADE,
+    FOREIGN KEY(spell_id) REFERENCES spells(spell_id) ON DELETE CASCADE
 );
 
 CREATE TABLE languages(
@@ -82,7 +84,7 @@ INSERT INTO users( user_name) VALUES ('Tommy');
 INSERT INTO users( user_name) VALUES ('Jack');
 INSERT INTO users( user_name) VALUES ('Steven');
 INSERT INTO users( user_name) VALUES ('Eric');
-INSERT INTO characters( char_name ) VALUES ('Mintos');
+INSERT INTO characters( char_name ) VALUES ('Mentos');
 INSERT INTO characters( char_name ) VALUES ('Solden');
 INSERT INTO characters( char_name ) VALUES ('Khronos');
 INSERT INTO characters( char_name ) VALUES ('Creed');
