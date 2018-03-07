@@ -17,6 +17,17 @@ CREATE TABLE has_characters(
     FOREIGN KEY(char_id) REFERENCES characters(char_id) ON DELETE CASCADE
 );
 
+CREATE TABLE ability_scores_set(
+    char_id     BIGINT,
+    str_score   INT,
+    dex_score   INT,
+    con_score   INT,
+    int_score   INT,
+    wis_score   INT,
+    chr_score   INT,
+    FOREIGN KEY(char_id) REFERENCES characters(char_id) ON DELETE CASCADE
+);
+
 ---create spells table
 CREATE TABLE spells(
     spell_id        INTEGER PRIMARY KEY,
@@ -104,3 +115,4 @@ INSERT INTO has_spell( char_id, spell_id) VALUES (3, 348);
 INSERT INTO has_spell( char_id, spell_id) VALUES (4, 197);
 INSERT INTO has_spell( char_id, spell_id) VALUES (6, 220);
 INSERT INTO has_spell( char_id, spell_id) VALUES (7, 155);
+INSERT INTO ability_scores_set(char_id, str_score) VALUES (1, 10);

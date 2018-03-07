@@ -16,4 +16,15 @@ public class Application {
     public static void main(String[] args) throws Exception {
         SpringApplication.run(Application.class, args);
     }
+
+    @Bean
+    public CommandLineRunner startup( ICharacterAccessor characterAccessor) {
+        return new CommandLineRunner() {
+            @Override
+            public void run(String... strings) throws Exception {
+                Integer i = 1;
+                LOGGER.info("My Strength Score is: " + characterAccessor.findOne(i.longValue()).getStrengthScore());
+            }
+        };
+    }
 }
