@@ -30,7 +30,7 @@ CREATE TABLE ability_scores_set(
 
 ---create spells table
 CREATE TABLE spells(
-    spell_id        INTEGER PRIMARY KEY,
+    spell_id        BIGSERIAL PRIMARY KEY,
     spell_name      VARCHAR,
     ritual          BIT,
     name_ritual     VARCHAR,
@@ -89,30 +89,36 @@ INSERT INTO weapons(SELECT * FROM CSVREAD('data/equipment/weapons.csv'));
 
 --this is test data
 INSERT INTO users( user_name) VALUES ('Kevin');
---INSERT INTO users( user_name) VALUES ('Erkan');
---INSERT INTO users( user_name) VALUES ('Anthony');
---INSERT INTO users( user_name) VALUES ('Tommy');
---INSERT INTO users( user_name) VALUES ('Jack');
---INSERT INTO users( user_name) VALUES ('Steven');
---INSERT INTO users( user_name) VALUES ('Eric');
+INSERT INTO users( user_name) VALUES ('Erkan');
+INSERT INTO users( user_name) VALUES ('Anthony');
+INSERT INTO users( user_name) VALUES ('Tommy');
+INSERT INTO users( user_name) VALUES ('Jack');
+INSERT INTO users( user_name) VALUES ('Steven');
+INSERT INTO users( user_name) VALUES ('Eric');
 INSERT INTO characters( char_name ) VALUES ('Mentos');
---INSERT INTO characters( char_name ) VALUES ('Solden');
---INSERT INTO characters( char_name ) VALUES ('Khronos');
---INSERT INTO characters( char_name ) VALUES ('Creed');
---INSERT INTO characters( char_name ) VALUES ('Kneecap');
---INSERT INTO characters( char_name ) VALUES ('Leoz');
---INSERT INTO characters( char_name ) VALUES ('Ethanol');
+INSERT INTO characters( char_name ) VALUES ('Solden');
+INSERT INTO characters( char_name ) VALUES ('Khronos');
+INSERT INTO characters( char_name ) VALUES ('Creed');
+INSERT INTO characters( char_name ) VALUES ('Kneecap');
+INSERT INTO characters( char_name ) VALUES ('Leoz');
+INSERT INTO characters( char_name ) VALUES ('Ethanol');
 INSERT INTO has_characters( user_id, char_id) VALUES ( 1, 1);
---INSERT INTO has_characters( user_id, char_id) VALUES ( 2, 2);
---INSERT INTO has_characters( user_id, char_id) VALUES ( 3, 3);
---INSERT INTO has_characters( user_id, char_id) VALUES ( 4, 4);
---INSERT INTO has_characters( user_id, char_id) VALUES ( 5, 5);
---INSERT INTO has_characters( user_id, char_id) VALUES ( 6, 6);
---INSERT INTO has_characters( user_id, char_id) VALUES ( 7, 7);
+INSERT INTO has_characters( user_id, char_id) VALUES ( 2, 2);
+INSERT INTO has_characters( user_id, char_id) VALUES ( 3, 3);
+INSERT INTO has_characters( user_id, char_id) VALUES ( 4, 4);
+INSERT INTO has_characters( user_id, char_id) VALUES ( 5, 5);
+INSERT INTO has_characters( user_id, char_id) VALUES ( 6, 6);
+INSERT INTO has_characters( user_id, char_id) VALUES ( 7, 7);
 INSERT INTO has_spell( char_id, spell_id) VALUES (1, 238);
---INSERT INTO has_spell( char_id, spell_id) VALUES (2, 205);
---INSERT INTO has_spell( char_id, spell_id) VALUES (3, 348);
---INSERT INTO has_spell( char_id, spell_id) VALUES (4, 197);
---INSERT INTO has_spell( char_id, spell_id) VALUES (6, 220);
---INSERT INTO has_spell( char_id, spell_id) VALUES (7, 155);
+INSERT INTO has_spell( char_id, spell_id) VALUES (2, 205);
+INSERT INTO has_spell( char_id, spell_id) VALUES (3, 348);
+INSERT INTO has_spell( char_id, spell_id) VALUES (4, 197);
+INSERT INTO has_spell( char_id, spell_id) VALUES (6, 220);
+INSERT INTO has_spell( char_id, spell_id) VALUES (7, 155);
 INSERT INTO ability_scores_set(char_id, str_score) VALUES (1, 10);
+INSERT INTO ability_scores_set(char_id, str_score) VALUES (2, 10);
+INSERT INTO ability_scores_set(char_id, str_score) VALUES (3, 10);
+INSERT INTO ability_scores_set(char_id, str_score) VALUES (4, 10);
+INSERT INTO ability_scores_set(char_id, str_score) VALUES (5, 10);
+INSERT INTO ability_scores_set(char_id, str_score) VALUES (6, 10);
+INSERT INTO ability_scores_set(char_id, str_score) VALUES (7, 10);
