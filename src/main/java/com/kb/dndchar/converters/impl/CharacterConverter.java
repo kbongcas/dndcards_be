@@ -1,5 +1,7 @@
 package com.kb.dndchar.converters.impl;
 
+import com.kb.dndchar.accessors.IAbilityScoresAccessor;
+import com.kb.dndchar.converters.IAbilityScoresConverter;
 import com.kb.dndchar.converters.ICharacterConverter;
 import com.kb.dndchar.converters.ILocalDateTimeConverter;
 import com.kb.dndchar.domains.DomainCharacter;
@@ -15,6 +17,12 @@ public class CharacterConverter implements ICharacterConverter {
     @Autowired
     ILocalDateTimeConverter localDateTimeConverter;
 
+    @Autowired
+    IAbilityScoresConverter abilityScoresConverter;
+
+    @Autowired
+    IAbilityScoresAccessor abilityScoresAccessor;
+
     @Override
     public DomainCharacter viewToDomain(ViewCharacter viewCharacter) {
         DomainCharacter domainCharacter = new DomainCharacter();
@@ -28,6 +36,8 @@ public class CharacterConverter implements ICharacterConverter {
             domainCharacter.setCreatedOn(localDateTimeConverter
                     .convertLongToLocalDateTime(viewCharacter.getCreatedOn()));
         }
+        domainCharacter.setDomainAbilityScores(abilityScoresConverter
+                .viewToDomain(viewCharacter.getViewAbilityScores(), viewCharacter.getCharId()));
         return domainCharacter;
     }
 
@@ -40,6 +50,8 @@ public class CharacterConverter implements ICharacterConverter {
                 .convertLocalDateTimeToLong(domainCharacter.getLastUpdated()));
         viewCharacter.setCreatedOn(localDateTimeConverter
                 .convertLocalDateTimeToLong(domainCharacter.getCreatedOn()));
+        viewCharacter.setViewAbilityScores(abilityScoresConverter
+                .domainToView(abilityScoresAccessor.findOne(domainCharacter.getCharId())));
         return viewCharacter;
     }
 }

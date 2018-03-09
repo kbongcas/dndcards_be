@@ -23,7 +23,8 @@ public class Application {
             @Override
             public void run(String... strings) throws Exception {
                 Integer i = 1;
-                LOGGER.info("My Strength Score is: " + characterAccessor.findOne(i.longValue()).getStrengthScore());
+                LOGGER.info("My Strength Score is: "
+                        + characterAccessor.findOne(i.longValue()).getDomainAbilityScores().getStrengthScore());
             }
         };
     }

@@ -8,4 +8,5 @@ public class ViewCharacter {
     private String charName;
     private Long lastUpdated;
     private Long createdOn;
+    private ViewAbilityScores viewAbilityScores;
 }

@@ -8,9 +8,6 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name="characters")
-@SecondaryTable(name="ability_scores_set",
-        pkJoinColumns = @PrimaryKeyJoinColumn(name="char_id", referencedColumnName="char_id")
-)
 public class DomainCharacter {
 
     @Id
@@ -27,7 +24,8 @@ public class DomainCharacter {
     @Column(name = "last_updated")
     private LocalDateTime lastUpdated;
 
-    @Column(name = "str_score", table = "ability_scores_set")
-    private Integer strengthScore;
+    @OneToOne (cascade = CascadeType.ALL)
+    @JoinColumn(name="char_id")
+    private DomainAbilityScores domainAbilityScores;
 
 }
