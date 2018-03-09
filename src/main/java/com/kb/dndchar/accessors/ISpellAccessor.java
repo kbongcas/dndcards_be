@@ -1,7 +1,7 @@
 package com.kb.dndchar.accessors;
 
 import com.kb.dndchar.domains.DomainSpell;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ISpellAccessor extends CrudRepository<DomainSpell, Long>, ISpellAccessorCustom {
+public interface ISpellAccessor extends JpaRepository<DomainSpell, Long>, ISpellAccessorCustom {
 }
