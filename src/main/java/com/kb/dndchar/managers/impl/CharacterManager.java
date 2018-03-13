@@ -72,8 +72,10 @@ public class CharacterManager implements ICharacterManager {
         if (character == null) {
             throw new EntityNotFoundException("Unable to retrieve post: " + characterId.toString());
         }
+
+        ViewCharacter viewCharacter = characterConverter.domainToView(character);
         characterAccessor.delete(characterId);
-        return characterConverter.domainToView(character);
+        return viewCharacter;
     }
 
     @Override
