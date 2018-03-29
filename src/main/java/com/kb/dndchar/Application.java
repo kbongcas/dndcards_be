@@ -1,8 +1,6 @@
 package com.kb.dndchar;
 
-import com.kb.dndchar.accessors.ICharacterAccessor;
 import com.kb.dndchar.accessors.ISpellAccessor;
-import com.kb.dndchar.accessors.ISpellAccessorCustom;
 import com.kb.dndchar.accessors.impl.SpellAccessorCustom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +19,7 @@ public class Application {
     }
 
     @Bean
-    public CommandLineRunner startup(ICharacterAccessor characterAccessor,
+    public CommandLineRunner startup(
                                      ISpellAccessor spellAccessor,
                                      SpellAccessorCustom spellAccessorCustom) {
         return new CommandLineRunner() {

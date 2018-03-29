@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityNotFoundException;
+import java.security.InvalidParameterException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,5 +52,38 @@ public class SpellManager implements ISpellManager{
         return  spellAccessorCustom.getSpellsByCharId(charId).stream()
                 .map(spellConverter:: domainToView)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public ViewSpell createSpell(ViewSpell viewSpell) {
+        return spellConverter.domainToView(
+                spellAccessor.save(
+                        spellConverter.viewToDomain(viewSpell)));
+    }
+
+    @Override
+    public ViewSpell updateSpell(Long spellId, ViewSpell viewSpell) {
+        DomainSpell currentSpell = spellAccessor.findOne(spellId);
+        if (spellId == null) {
+            throw new EntityNotFoundException("Could not retrieve Spell with ID: " + spellId.toString());
+        } else if (!viewSpell.getSpellId().equals(spellId)) {
+            throw new InvalidParameterException("Provided Spell ID: "
+                    + spellId.toString()
+                    + " does not match provided Spell ID: "
+                    + spellId.toString());
+        }
+        return spellConverter.domainToView(
+                spellAccessor.save(
+                        spellConverter.viewToDomain(viewSpell)));
+    }
+
+    @Override
+    public ViewSpell deleteSpell(Long spellId) {
+        DomainSpell spell = spellAccessor.findOne(spellId);
+        if (spell == null) {
+            throw new EntityNotFoundException("Unable to retrieve Spell: " + spellId.toString());
+        }
+        spellAccessor.delete(spellId);
+        return spellConverter.domainToView(spell);
     }
 }

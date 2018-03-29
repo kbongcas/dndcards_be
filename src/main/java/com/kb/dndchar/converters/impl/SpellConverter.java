@@ -15,7 +15,22 @@ public class SpellConverter implements ISpellConverter {
 
     @Override
     public DomainSpell viewToDomain(ViewSpell viewSpell) {
-            return  spellAccessor.findOne(viewSpell.getSpellId());
+
+        DomainSpell domainSpell = new DomainSpell();
+        domainSpell.setSpellId(viewSpell.getSpellId());
+        domainSpell.setSpellName(viewSpell.getSpellName());
+        domainSpell.setIsRitual(viewSpell.getIsRitual());
+        domainSpell.setRitualName(viewSpell.getRitualName());
+        domainSpell.setLevel(viewSpell.getLevel());
+        domainSpell.setCastingTime(viewSpell.getCastingTime());
+        domainSpell.setRange(viewSpell.getRange());
+        domainSpell.setDuration(viewSpell.getDuration());
+        domainSpell.setComponents(viewSpell.getComponents());
+        domainSpell.setMaterials(viewSpell.getMaterials());
+        domainSpell.setSpellDesc(viewSpell.getSpellDesc());
+        domainSpell.setHigherLevelDescOne(viewSpell.getHigherLevelDescOne());
+        domainSpell.setHigherLevelDescTwo(viewSpell.getHigherLevelDescTwo());
+        return domainSpell;
     }
 
     @Override

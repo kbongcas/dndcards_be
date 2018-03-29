@@ -30,4 +30,29 @@ public class SpellController {
     ResponseEntity<List<ViewSpell>> getSpellsByCharId(@RequestParam(value="charId")Long charId) {
        return new ResponseEntity<>(spellManager.getSpellsByCharId(charId), HttpStatus.OK);
     }
+
+    /**
+     * TODO - Don't let this override other spells in the db.
+     */
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    ResponseEntity<ViewSpell> createSpell(@RequestBody ViewSpell viewSpell) {
+        return new ResponseEntity<>(spellManager.createSpell(viewSpell), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/{spellId}", method = RequestMethod.PUT)
+    ResponseEntity<ViewSpell> updateSpell(@PathVariable Long spellId,
+                                                  @RequestBody ViewSpell viewSpell) {
+        return new ResponseEntity<>(spellManager
+                .updateSpell(spellId, viewSpell), HttpStatus.OK);
+    }
+
+    /**
+     * TODO - dont let users delete other users spells.
+     * TODO - fix returning viewspell giving a different spell id.
+     */
+    @RequestMapping(value = "/{spellId}", method = RequestMethod.DELETE)
+    ResponseEntity<ViewSpell> deleteSpell(@PathVariable Long spellId) {
+        return new ResponseEntity<>(spellManager.deleteSpell(spellId), HttpStatus.OK);
+    }
+
 }
