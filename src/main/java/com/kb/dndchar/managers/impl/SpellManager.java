@@ -45,16 +45,6 @@ public class SpellManager implements ISpellManager{
     }
 
     @Override
-    public List<ViewSpell> getSpellsByCharId(Long charId) {
-        /*
-         * @TODO See what happens if List is empty cause a character might not have spell at all.
-         */
-        return  spellAccessorCustom.getSpellsByCharId(charId).stream()
-                .map(spellConverter:: domainToView)
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public ViewSpell createSpell(ViewSpell viewSpell) {
         return spellConverter.domainToView(
                 spellAccessor.save(
@@ -85,5 +75,12 @@ public class SpellManager implements ISpellManager{
         }
         spellAccessor.delete(spellId);
         return spellConverter.domainToView(spell);
+    }
+
+    @Override
+    public List<ViewSpell> getSpellName(String name) {
+         return  spellAccessorCustom.getSpellsByName(name).stream()
+                .map(spellConverter:: domainToView)
+                .collect(Collectors.toList());
     }
 }

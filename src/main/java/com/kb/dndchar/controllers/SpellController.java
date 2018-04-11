@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -24,11 +25,6 @@ public class SpellController {
     @RequestMapping(value = "/{spellId}", method = RequestMethod.GET)
     ResponseEntity<ViewSpell> getSpell(@PathVariable Long spellId) {
         return new ResponseEntity<>( spellManager.getSpellById(spellId), HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    ResponseEntity<List<ViewSpell>> getSpellsByCharId(@RequestParam(value="charId")Long charId) {
-       return new ResponseEntity<>(spellManager.getSpellsByCharId(charId), HttpStatus.OK);
     }
 
     /**
@@ -53,6 +49,11 @@ public class SpellController {
     @RequestMapping(value = "/{spellId}", method = RequestMethod.DELETE)
     ResponseEntity<ViewSpell> deleteSpell(@PathVariable Long spellId) {
         return new ResponseEntity<>(spellManager.deleteSpell(spellId), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    ResponseEntity<List<ViewSpell>> customers(Principal principal){
+        return new ResponseEntity<>(spellManager.getSpellName(principal.getName()), HttpStatus.OK);
     }
 
 }

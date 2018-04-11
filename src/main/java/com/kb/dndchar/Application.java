@@ -29,9 +29,7 @@ public class Application {
                 //LOGGER.info("My Strength Score is: "
                  //       + characterAccessor.findOne(i.longValue()).getDomainAbilityScores().getStrengthScore());
 
-                LOGGER.info("This is spell 1: " + spellAccessor.findOne(i.longValue()).toString());
 
-                LOGGER.info("This is spell 1: " + spellAccessorCustom.getSpellsByCharId(i.longValue()).toString());
             }
         };
     }

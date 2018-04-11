@@ -15,17 +15,13 @@ public class SpellAccessorCustom implements ISpellAccessorCustom{
     @PersistenceContext
     private EntityManager entityManager;
 
-    public List<DomainSpell> getSpellsByCharId(Long charId) {
-
-        /* Bad Query -> suppose we add a new attribute to spells.
-         * sorry Dr. Tu :(
-         * */
+    public List<DomainSpell> getSpellsByName(String name) {
         Query query = entityManager.createNativeQuery(
                     "SELECT *\n" +
                         "FROM HAS_SPELL NATURAL JOIN SPELLS as S\n" +
-                        "WHERE char_id = ?",
+                        "WHERE user_name = ?",
         DomainSpell.class);
-        query.setParameter(1,charId);
+        query.setParameter(1,name);
 
         @SuppressWarnings("unchecked")
         List<DomainSpell> spellList = query.getResultList();

@@ -8,8 +8,8 @@ import java.util.List;
 public interface ISpellManager {
     List<ViewSpell> getAllSpells();
     ViewSpell getSpellById(Long spellId);
-    List<ViewSpell> getSpellsByCharId( Long charId);
     ViewSpell createSpell(ViewSpell viewSpell);
     ViewSpell updateSpell(Long spellId, ViewSpell viewSpell);
     ViewSpell deleteSpell(Long spellId);
+    List<ViewSpell> getSpellName(String name);
 }
