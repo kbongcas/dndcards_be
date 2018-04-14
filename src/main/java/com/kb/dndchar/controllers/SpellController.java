@@ -2,6 +2,8 @@ package com.kb.dndchar.controllers;
 
 import com.kb.dndchar.managers.ISpellManager;
 import com.kb.dndchar.views.ViewSpell;
+import org.keycloak.KeycloakPrincipal;
+import org.keycloak.representations.AccessToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +45,6 @@ public class SpellController {
     }
 
     /**
-     * TODO - dont let users delete other users spells.
      * TODO - fix returning viewspell giving a different spell id.
      */
     @RequestMapping(value = "/{spellId}", method = RequestMethod.DELETE)
@@ -52,8 +53,7 @@ public class SpellController {
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
-    ResponseEntity<List<ViewSpell>> customers(Principal principal){
-        return new ResponseEntity<>(spellManager.getSpellName(principal.getName()), HttpStatus.OK);
+    ResponseEntity<String> customers(Principal principal){
+        return new ResponseEntity<>(principal.getName(), HttpStatus.OK);
     }
-
 }
