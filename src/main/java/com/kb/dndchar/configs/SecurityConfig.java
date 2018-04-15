@@ -48,7 +48,7 @@ class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
         http.authorizeRequests()
-                .antMatchers("/api/v1/Spellj*").hasRole("user")
+                .antMatchers("/api/v1/Spell*").hasRole("user")
                 .antMatchers("/api/v1/Spell/user*").hasRole("user")
                 .anyRequest()
                 .permitAll();

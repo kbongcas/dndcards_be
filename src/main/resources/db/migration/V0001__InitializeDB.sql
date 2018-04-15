@@ -43,3 +43,6 @@ INSERT INTO users( user_name) VALUES ('Jack');
 INSERT INTO users( user_name) VALUES ('Steven');
 INSERT INTO users( user_name) VALUES ('Eric');
 INSERT INTO has_spell( user_name, spell_id) VALUES ('kev', 238);
+INSERT INTO has_spell( user_name, spell_id) VALUES ('kev', 239);
+INSERT INTO has_spell( user_name, spell_id) VALUES ('kev', 9);
+INSERT INTO has_spell( user_name, spell_id) VALUES ('kev', 4);

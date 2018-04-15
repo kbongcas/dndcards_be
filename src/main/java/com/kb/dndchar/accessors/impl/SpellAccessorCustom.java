@@ -15,7 +15,7 @@ public class SpellAccessorCustom implements ISpellAccessorCustom{
     @PersistenceContext
     private EntityManager entityManager;
 
-    public List<DomainSpell> getSpellsByName(String name) {
+    public List<DomainSpell> getSpellsOfUser(String name) {
         Query query = entityManager.createNativeQuery(
                     "SELECT *\n" +
                         "FROM HAS_SPELL NATURAL JOIN SPELLS as S\n" +

@@ -3,6 +3,7 @@ package com.kb.dndchar.controllers;
 import com.kb.dndchar.managers.ISpellManager;
 import com.kb.dndchar.views.ViewSpell;
 import org.keycloak.KeycloakPrincipal;
+import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
 import org.keycloak.representations.AccessToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,22 +20,25 @@ public class SpellController {
     @Autowired
     ISpellManager spellManager;
 
-    @RequestMapping(method = RequestMethod.GET)
-    ResponseEntity<List<ViewSpell>> getAllSpells() {
-       return new ResponseEntity<>(spellManager.getAllSpells(), HttpStatus.OK);
+    @RequestMapping(value ="", method = RequestMethod.GET)
+    ResponseEntity<List<ViewSpell>> getAllSpellsOfUser( Principal principal) {
+       return new ResponseEntity<>(spellManager.getAllSpellsOfUser(principal.getName()), HttpStatus.OK);
     }
 
+    /** This can be handled in the front end  using getAllSpellsOfUser()
     @RequestMapping(value = "/{spellId}", method = RequestMethod.GET)
-    ResponseEntity<ViewSpell> getSpell(@PathVariable Long spellId) {
+    ResponseEntity<ViewSpell> getSpell(Principal principal, @PathVariable Long spellId) {
+        if(spellManager.getAllSpellsOfUser(principal.getName()))
         return new ResponseEntity<>( spellManager.getSpellById(spellId), HttpStatus.OK);
     }
+    /**
 
     /**
      * TODO - Don't let this override other spells in the db.
      */
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    ResponseEntity<ViewSpell> createSpell(@RequestBody ViewSpell viewSpell) {
-        return new ResponseEntity<>(spellManager.createSpell(viewSpell), HttpStatus.OK);
+    ResponseEntity<ViewSpell> createSpellForUser(Principal principal, @RequestBody ViewSpell viewSpell) {
+        return new ResponseEntity<>(spellManager.createSpellForUser(principal.getName(), viewSpell), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{spellId}", method = RequestMethod.PUT)

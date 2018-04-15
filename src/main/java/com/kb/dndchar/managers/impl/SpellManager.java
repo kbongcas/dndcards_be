@@ -2,7 +2,9 @@ package com.kb.dndchar.managers.impl;
 
 import com.kb.dndchar.accessors.ISpellAccessor;
 import com.kb.dndchar.accessors.ISpellAccessorCustom;
+import com.kb.dndchar.accessors.IUserAccessor;
 import com.kb.dndchar.accessors.impl.SpellAccessorCustom;
+import com.kb.dndchar.accessors.impl.UserAccessorCustom;
 import com.kb.dndchar.converters.ISpellConverter;
 import com.kb.dndchar.domains.DomainSpell;
 import com.kb.dndchar.managers.ISpellManager;
@@ -25,15 +27,22 @@ public class SpellManager implements ISpellManager{
     ISpellAccessor spellAccessor;
 
     @Autowired
+    IUserAccessor userAccessor;
+
+    @Autowired
+    UserAccessorCustom userAccessorCustom;
+
+    @Autowired
     SpellAccessorCustom spellAccessorCustom;
 
     @Override
-    public List<ViewSpell> getAllSpells() {
-        return spellAccessor.findAll().stream()
+    public List<ViewSpell> getAllSpellsOfUser(String username) {
+        return spellAccessorCustom.getSpellsOfUser(username).stream()
                 .map(spellConverter::domainToView)
                 .collect(Collectors.toList());
     }
 
+    /**
     @Override
     public ViewSpell getSpellById(Long spellId) {
         DomainSpell domainSpell = spellAccessor.findOne(spellId);
@@ -43,12 +52,21 @@ public class SpellManager implements ISpellManager{
         }
         return spellConverter.domainToView(domainSpell);
     }
+     */
 
     @Override
-    public ViewSpell createSpell(ViewSpell viewSpell) {
-        return spellConverter.domainToView(
-                spellAccessor.save(
+    public ViewSpell createSpellForUser(String username, ViewSpell viewSpell) {
+        if(userAccessor.findByUsername(username) == null){
+            throw new EntityNotFoundException("Could not retrieve user with username: " +
+            username);
+        }
+        ViewSpell createdSpell = spellConverter.domainToView(
+                        spellAccessor.save(
                         spellConverter.viewToDomain(viewSpell)));
+        if(createdSpell != null) {
+            userAccessorCustom.addToHasSpellTable(username, viewSpell.getSpellId());
+        }
+        return createdSpell;
     }
 
     @Override
@@ -79,7 +97,7 @@ public class SpellManager implements ISpellManager{
 
     @Override
     public List<ViewSpell> getSpellName(String name) {
-         return  spellAccessorCustom.getSpellsByName(name).stream()
+         return  spellAccessorCustom.getSpellsOfUser(name).stream()
                 .map(spellConverter:: domainToView)
                 .collect(Collectors.toList());
     }
