@@ -36,7 +36,7 @@ INSERT INTO spells(SELECT * FROM CSVREAD('data/spells/spells.csv'));
 
 --this is test data
 INSERT INTO users( user_name) VALUES ('kev');
-INSERT INTO users( user_name) VALUES ('Erkan');
+INSERT INTO users( user_name) VALUES ('erk');
 INSERT INTO users( user_name) VALUES ('Anthony');
 INSERT INTO users( user_name) VALUES ('Tommy');
 INSERT INTO users( user_name) VALUES ('Jack');
@@ -46,3 +46,6 @@ INSERT INTO has_spell( user_name, spell_id) VALUES ('kev', 238);
 INSERT INTO has_spell( user_name, spell_id) VALUES ('kev', 239);
 INSERT INTO has_spell( user_name, spell_id) VALUES ('kev', 9);
 INSERT INTO has_spell( user_name, spell_id) VALUES ('kev', 4);
+INSERT INTO has_spell( user_name, spell_id) VALUES ('erk', 38);
+INSERT INTO has_spell( user_name, spell_id) VALUES ('erk', 28);
+INSERT INTO has_spell( user_name, spell_id) VALUES ('erk', 23);
