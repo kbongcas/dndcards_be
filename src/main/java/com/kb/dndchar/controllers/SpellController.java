@@ -36,7 +36,7 @@ public class SpellController {
     /**
      * TODO - Don't let this override other spells in the db.
      */
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     ResponseEntity<ViewSpell> createSpellForUser(Principal principal, @RequestBody ViewSpell viewSpell) {
         return new ResponseEntity<>(spellManager.createSpellForUser(principal.getName(), viewSpell), HttpStatus.OK);
     }

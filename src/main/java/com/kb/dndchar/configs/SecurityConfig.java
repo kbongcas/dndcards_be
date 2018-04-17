@@ -44,10 +44,13 @@ class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
                 new SessionRegistryImpl());
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
-        http.authorizeRequests()
+        http.headers().frameOptions().sameOrigin();
+        http.csrf().disable()
+        .authorizeRequests()
                 .antMatchers("/api/v1/Spell*").hasRole("user")
                 .antMatchers("/api/v1/Spell/user*").hasRole("user")
                 .anyRequest()

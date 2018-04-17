@@ -64,7 +64,7 @@ public class SpellManager implements ISpellManager{
                         spellAccessor.save(
                         spellConverter.viewToDomain(viewSpell)));
         if(createdSpell != null) {
-            userAccessorCustom.addToHasSpellTable(username, viewSpell.getSpellId());
+            userAccessorCustom.addToHasSpellTable(username, createdSpell.getSpellId());
         }
         return createdSpell;
     }
