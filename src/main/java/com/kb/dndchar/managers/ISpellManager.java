@@ -13,4 +13,5 @@ public interface ISpellManager {
     List<ViewSpell> getSpellName(String name);
     List<ViewSpell>  getAllSpellsOfUser(String username);
     ViewSpell createSpellForUser(String name, ViewSpell viewSpell);
+    ViewSpell getSpellById(Long spellId, String name);
 }

@@ -43,8 +43,10 @@ public class SpellManager implements ISpellManager{
     }
 
     /**
+     * @Todo need to make sure not to get/edit other peoples's spell
+     */
     @Override
-    public ViewSpell getSpellById(Long spellId) {
+    public ViewSpell getSpellById(Long spellId, String username) {
         DomainSpell domainSpell = spellAccessor.findOne(spellId);
         if (domainSpell == null) {
             throw new EntityNotFoundException("Could not retrieve Spell with Id: " +
@@ -52,7 +54,6 @@ public class SpellManager implements ISpellManager{
         }
         return spellConverter.domainToView(domainSpell);
     }
-     */
 
     @Override
     public ViewSpell createSpellForUser(String username, ViewSpell viewSpell) {
@@ -69,6 +70,9 @@ public class SpellManager implements ISpellManager{
         return createdSpell;
     }
 
+     /**
+     * @Todo need to make sure not to get/edit other peoples's spell
+     */
     @Override
     public ViewSpell updateSpell(Long spellId, ViewSpell viewSpell) {
         DomainSpell currentSpell = spellAccessor.findOne(spellId);

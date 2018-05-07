@@ -25,13 +25,10 @@ public class SpellController {
        return new ResponseEntity<>(spellManager.getAllSpellsOfUser(principal.getName()), HttpStatus.OK);
     }
 
-    /** This can be handled in the front end  using getAllSpellsOfUser()
-    @RequestMapping(value = "/{spellId}", method = RequestMethod.GET)
-    ResponseEntity<ViewSpell> getSpell(Principal principal, @PathVariable Long spellId) {
-        if(spellManager.getAllSpellsOfUser(principal.getName()))
-        return new ResponseEntity<>( spellManager.getSpellById(spellId), HttpStatus.OK);
+     @RequestMapping(value ="/{spellId}", method = RequestMethod.GET)
+    ResponseEntity<ViewSpell> getSpellById( Principal principal, @PathVariable Long spellId) {
+       return new ResponseEntity<>(spellManager.getSpellById(spellId, principal.getName()), HttpStatus.OK);
     }
-    /**
 
     /**
      * TODO - Don't let this override other spells in the db.
