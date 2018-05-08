@@ -23,4 +23,12 @@ public class UserAccessorCustom implements IUserAccessorCustom{
         query.setParameter(2,spellID);
         query.executeUpdate();
     }
-}
+
+
+    public void addToHasItemTable(String name, Long itemId) {
+        Query query = entityManager.createNativeQuery(
+                    "INSERT INTO has_item (user_name, item_id) VALUES (?, ?)");
+        query.setParameter(1,name);
+        query.setParameter(2,itemId);
+        query.executeUpdate();
+    }}

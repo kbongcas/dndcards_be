@@ -31,6 +31,21 @@ CREATE TABLE has_spell(
     FOREIGN KEY(spell_id) REFERENCES spells(spell_id) ON DELETE CASCADE
 );
 
+CREATE TABLE items(
+    item_id     BIGSERIAL PRIMARY KEY,
+    item_name   VARCHAR,
+    item_type   VARCHAR,
+    item_cost   VARCHAR,
+    item_weight VARCHAR,
+    item_desc   CLOB
+);
+
+CREATE TABLE has_item(
+    user_name       VARCHAR,
+    item_id         BIGINT,
+    FOREIGN KEY(user_name) REFERENCES users(user_name) ON DELETE CASCADE,
+    FOREIGN KEY(item_id) REFERENCES items(item_id) ON DELETE CASCADE
+);
 
 INSERT INTO spells(SELECT * FROM CSVREAD('data/spells/spells.csv'));
 
@@ -49,3 +64,10 @@ INSERT INTO has_spell( user_name, spell_id) VALUES ('kev', 4);
 INSERT INTO has_spell( user_name, spell_id) VALUES ('erk', 38);
 INSERT INTO has_spell( user_name, spell_id) VALUES ('erk', 28);
 INSERT INTO has_spell( user_name, spell_id) VALUES ('erk', 23);
+
+INSERT INTO items( item_id, item_name, item_desc) VALUES (1, 'Ring of Truth', 'The bearer tell the truth');
+INSERT INTO items( item_id, item_name, item_desc) VALUES (2, 'Ring of Lies', 'The bearer tells lies');
+
+
+INSERT INTO has_item( user_name, item_id) VALUES ('erk', 1);
+INSERT INTO has_item( user_name, item_id) VALUES ('erk', 2);
